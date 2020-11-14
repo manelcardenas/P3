@@ -37,9 +37,9 @@ void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) co
   }
 ```
 
-   * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
-     unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la
-	 autocorrelación de la señal y la posición del primer máximo secundario.
+   * **Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
+     **unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la
+	 **autocorrelación de la señal y la posición del primer máximo secundario.
 
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la librería matplotlib de Python.
