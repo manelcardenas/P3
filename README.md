@@ -117,7 +117,15 @@ Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usa
   
   * **Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos `pitch_db/train`..**
 
-INSERTAR TABLA y imagen
+
+Unvoiced frames as voiced   |   Voiced frames as unvoiced   |   Gross voiced error   |   MSE of fine errors
+----------------------------| :---------------------------: |------------------------| :--------------------:
+     218/7045 (3.09 %)      |        356/4155 (8.57 %)      |     70/3799 (1.84 %)   |         2.73 %
+     
+Resultado TOTAL **91.54%**
+
+
+<img src="imagenes/11.png" width="800" align="center">
 
    * **Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará el uso de alternativas de mayor calidad (particularmente Python).**
    
@@ -135,7 +143,7 @@ Ejercicios de ampliación
 
   * **Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización con los argumentos añadidos.**
 
-Mensaje de ayuda del docopt:
+Mensaje de ayuda del **docopt**:
 
 <img src="imagenes/8.png" width="640" align="center">
 
@@ -147,7 +155,11 @@ Ejemplo de uso:
 
  * Ejemplo 2: Definiendo umbrales
  
-<img src="imagenes/10.png" width="700" align="center">
+<img src="imagenes/10.png" width="750" align="center">
+
+Gracias al docopt, tenemos un fácil y rápido acceso a modificar los valores de los umbrales. Aún así, quisimos provar de hacer un script en **bash**.
+
+AÑADIR EL SCRIPT. 
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección
   de pitch.
