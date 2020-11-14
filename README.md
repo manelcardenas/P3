@@ -1,19 +1,19 @@
 PAV - P3: detección de pitch
 ============================
 
-Esta práctica se distribuye a través del repositorio GitHub [Práctica 3](https://github.com/albino-pav/P3).
+**Esta práctica se distribuye a través del repositorio GitHub [Práctica 3](https://github.com/albino-pav/P3).
 Siga las instrucciones de la [Práctica 2](https://github.com/albino-pav/P2) para realizar un `fork` de la
-misma y distribuir copias locales (*clones*) del mismo a los distintos integrantes del grupo de prácticas.
+misma y distribuir copias locales (*clones*) del mismo a los distintos integrantes del grupo de prácticas.**
 
-Recuerde realizar el *pull request* al repositorio original una vez completada la práctica.
+**Recuerde realizar el *pull request* al repositorio original una vez completada la práctica.**
 
 Ejercicios básicos
 ------------------
 
-- Complete el código de los ficheros necesarios para realizar la detección de pitch usando el programa
-  `get_pitch`.
+**- Complete el código de los ficheros necesarios para realizar la detección de pitch usando el programa
+  `get_pitch`.**
 
-   * Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.
+   ***Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.**
 
 
 ```c
