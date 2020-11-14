@@ -10,10 +10,9 @@ misma y distribuir copias locales (*clones*) del mismo a los distintos integrant
 Ejercicios básicos
 ------------------
 
-**- Complete el código de los ficheros necesarios para realizar la detección de pitch usando el programa
-  `get_pitch`.**
+**- Complete el código de los ficheros necesarios para realizar la detección de pitch usando el programa get_pitch.**
 
-   * **Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.
+   * **Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.**
 
 
 ```c
@@ -55,7 +54,7 @@ A continuación se muestra un audio de más duración:
 
 NOTA: los códigos se encuentran en la carpeta _pym_. 
 
-   * **Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la autocorrelación. Inserte a continuación el código correspondiente.
+   * **Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la autocorrelación. Inserte a continuación el código correspondiente.**
      
 ```c
 while (*iR > 0 && iR < r.end()){
@@ -102,9 +101,10 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 	  - **Inserte una gráfica con la detección de pitch incorporada a `wavesurfer` y, junto a ella, los principales candidatos para determinar la sonoridad de la voz: el nivel de potencia de la señal (r[0]), la autocorrelación normalizada de uno (r1norm = r[1] / r[0]) y el valor de la autocorrelación en su máximo secundario (rmaxnorm = r[lag] / r[0]).**
 
 **Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
-**Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.
+**Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
 
 <img src="imagenes/4.png" width="640" align="center">
+
 
 - **Use el detector de pitch implementado en el programa wavesurfer en una señal de prueba y compare su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica ilustrativa del resultado de ambos detectores.**
 
@@ -113,15 +113,13 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usado otro audio):
 
 <img src="imagenes/6.png" width="640" align="center">
-
   
   
   * **Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos `pitch_db/train`..**
 
 INSERTAR TABLA y imagen
 
-
-   * **Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará el uso de alternativas de mayor calidad (particularmente Python).
+   * **Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará el uso de alternativas de mayor calidad (particularmente Python).**
    
 Hemos usado **Python**, y el resultado es el siguiente:
 
@@ -133,12 +131,23 @@ Ejercicios de ampliación
 
 - **Usando la librería `docopt_cpp`, modifique el fichero `get_pitch.cpp` para incorporar los parámetros del detector a   los argumentos de la línea de comandos.**
   
-  Esta técnica le resultará especialmente útil para optimizar los parámetros del detector. Recuerde que
-  una parte importante de la evaluación recaerá en el resultado obtenido en la detección de pitch en la
-  base de datos.
+  **Esta técnica le resultará especialmente útil para optimizar los parámetros del detector. Recuerde que una parte importante de la evaluación recaerá en el resultado obtenido en la detección de pitch en la base de datos.**
 
-  * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
-    con los argumentos añadidos.
+  * **Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización con los argumentos añadidos.**
+
+Mensaje de ayuda del docopt:
+
+<img src="imagenes/8.png" width="640" align="center">
+
+Ejemplo de uso:
+ * Ejemplo 1: Sin definir umbrales (los por defecto)
+ 
+<img src="imagenes/9.png" width="640" align="center">
+
+
+ * Ejemplo 2: Definiendo umbrales
+ 
+<img src="imagenes/10.png" width="640" align="center">
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección
   de pitch.
