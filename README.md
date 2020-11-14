@@ -121,10 +121,9 @@ Unvoiced frames as voiced | Voiced frames as unvoiced | Gross voiced error | MSE
 ------------------------- | ------------------------- | ------------------ | ------------------ |
 218/7045 (3.09 %)|356/4155 (8.57 %)|70/3799 (1.84 %)|2.73 %| 
 
-Resultado TOTAL |**91.54%**|
+Resultado TOTAL **91.54%**
 
-
-<img src="imagenes/11.png" width="800" align="center">
+<img src="imagenes/11.png" width="650" align="center">
 
    * **Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará el uso de alternativas de mayor calidad (particularmente Python).**
    
@@ -134,6 +133,11 @@ Hemos usado **Python**, y el resultado es el siguiente:
 
 
 Ejercicios de ampliación
+------------------------
+
+
+Docopt
+------------------------
 ------------------------
 
 - **Usando la librería `docopt_cpp`, modifique el fichero `get_pitch.cpp` para incorporar los parámetros del detector a   los argumentos de la línea de comandos.**
@@ -147,12 +151,13 @@ Mensaje de ayuda del **docopt**:
 <img src="imagenes/8.png" width="640" align="center">
 
 Ejemplo de uso:
- * Ejemplo 1: Sin definir umbrales (los por defecto)
+
+ * *Ejemplo 1*: Sin definir umbrales (los por defecto)
  
 <img src="imagenes/9.png" width="500" align="center">
 
 
- * Ejemplo 2: Definiendo umbrales
+ * *Ejemplo 2*: Definiendo umbrales
  
 <img src="imagenes/10.png" width="750" align="center">
 
@@ -160,22 +165,28 @@ Gracias al docopt, tenemos un fácil y rápido acceso a modificar los valores de
 
 AÑADIR EL SCRIPT. 
 
-- Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección
-  de pitch.
 
-  Entre las posibles mejoras, puede escoger una o más de las siguientes:
+- **Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección de pitch.**
 
-  * Técnicas de preprocesado: filtrado paso bajo, *center clipping*, etc.
-  * Técnicas de postprocesado: filtro de mediana, *dynamic time warping*, etc.
-  * Métodos alternativos a la autocorrelación: procesado cepstral, *average magnitude difference function*
-    (AMDF), etc.
-  * Optimización **demostrable** de los parámetros que gobiernan el detector, en concreto, de los que
-    gobiernan la decisión sonoro/sordo.
-  * Cualquier otra técnica que se le pueda ocurrir o encuentre en la literatura.
 
-  Encontrará más información acerca de estas técnicas en las [Transparencias del Curso](https://atenea.upc.edu/pluginfile.php/2908770/mod_resource/content/3/2b_PS%20Techniques.pdf)
-  y en [Spoken Language Processing](https://discovery.upc.edu/iii/encore/record/C__Rb1233593?lang=cat).
-  También encontrará más información en los anexos del enunciado de esta práctica.
+Center Clipping (Preprocesado)
+------------------------
+------------------------
+
+Filtro de Mediana (Postprocesado)
+------------------------
+------------------------
+
+
+Potencia (Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo)
+------------------------
+------------------------
+
+Bash (Intento fallido)
+------------------------
+------------------------
+
+
 
   Incluya, a continuación, una explicación de las técnicas incorporadas al detector. Se valorará la
   inclusión de gráficas, tablas, código o cualquier otra cosa que ayude a comprender el trabajo realizado.
