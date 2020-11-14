@@ -103,12 +103,12 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 **Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
 **Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
 
-<img src="imagenes/4.png" width="640" align="center">
+<img src="imagenes/4.png" width="750" align="center">
 
 
 - **Use el detector de pitch implementado en el programa wavesurfer en una señal de prueba y compare su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica ilustrativa del resultado de ambos detectores.**
 
-<img src="imagenes/5.png" width="640" align="center">
+<img src="imagenes/5.png" width="750" align="center">
 
 Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usado otro audio):
 
@@ -142,7 +142,7 @@ Mensaje de ayuda del docopt:
 Ejemplo de uso:
  * Ejemplo 1: Sin definir umbrales (los por defecto)
  
-<img src="imagenes/9.png" width="640" align="center">
+<img src="imagenes/9.png" width="500" align="center">
 
 
  * Ejemplo 2: Definiendo umbrales
