@@ -44,30 +44,7 @@ void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) co
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la librería matplotlib de Python.
 	 
->Hemos hecho el código en Python:
-
-
-```Python
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy.io.wavfile as waves
-
-archivo = 'matplotlib.wav'
-muestreo, sonido = waves.read(archivo)
-def autocorr(x):
-    result = np.correlate(x, x, mode = "full")
-    return result
-    # o return result[result.size/2:]
-final = autocorr(sonido.astype(float))
-fig, axs = plt.subplots(2)
-fig.suptitle('Senyal y autocorrelacion')
-axs[0].plot(sonido)
-axs[1].plot(final)
-plt.show()
-```
-
-
-
+>Hemos optado por hacer la gráfica en **Python**, concretamente con la librería **matplotlib**. 
 
    * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
      autocorrelación. Inserte a continuación el código correspondiente.
