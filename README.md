@@ -43,20 +43,19 @@ void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) co
 	 
 Hemos optado por hacer la gráfica en **Python**, concretamente con la librería **matplotlib**. La gráfica se corresponde a la señal y a la autocorrelación de un audio de *30ms*, y en ellas hemos remarcado el **periodo de pitch** y el primer máximo secundario. 
 
-<img src="imagenes/1.png" width="640" align="center">
+<img src="imagenes/1.png" width="800" align="center">
 
 Tambien la hicimos en matlab:
 
-<img src="imagenes/2.jpg" width="640" align="center">
+<img src="imagenes/2.jpg" width="800" align="center">
 
 A continuación se muestra un audio de más duración:
 
-<img src="imagenes/3.jpg" width="640" align="center">
+<img src="imagenes/3.jpg" width="800" align="center">
 
 NOTA: los códigos se encuentran en la carpeta _pym_. 
 
-   * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
-     autocorrelación. Inserte a continuación el código correspondiente.
+   * **Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la autocorrelación. Inserte a continuación el código correspondiente.
      
 ```c
 while (*iR > 0 && iR < r.end()){
@@ -102,17 +101,12 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 	
 	  - **Inserte una gráfica con la detección de pitch incorporada a `wavesurfer` y, junto a ella, los principales candidatos para determinar la sonoridad de la voz: el nivel de potencia de la señal (r[0]), la autocorrelación normalizada de uno (r1norm = r[1] / r[0]) y el valor de la autocorrelación en su máximo secundario (rmaxnorm = r[lag] / r[0]).**
 
-		Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.
-
-	    Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que
-		en esta práctica es de 15 ms.
+**Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
+**Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.
 
 <img src="imagenes/4.png" width="640" align="center">
 
-      - Use el detector de pitch implementado en el programa `wavesurfer` en una señal de prueba y compare
-	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
-		ilustrativa del resultado de ambos detectores.
-  
+- **Use el detector de pitch implementado en el programa wavesurfer en una señal de prueba y compare su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica ilustrativa del resultado de ambos detectores.**
 
 <img src="imagenes/5.png" width="640" align="center">
 
