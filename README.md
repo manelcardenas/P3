@@ -103,16 +103,16 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 **Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
 **Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
 
-<img src="imagenes/4.png" width="750" align="center">
+<img src="imagenes/4.png" width="800" align="center">
 
 
 - **Use el detector de pitch implementado en el programa wavesurfer en una señal de prueba y compare su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica ilustrativa del resultado de ambos detectores.**
 
-<img src="imagenes/5.png" width="750" align="center">
+<img src="imagenes/5.png" width="800" align="center">
 
 Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usado otro audio):
 
-<img src="imagenes/6.png" width="640" align="center">
+<img src="imagenes/6.png" width="800" align="center">
   
   
   * **Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos `pitch_db/train`..**
@@ -123,7 +123,7 @@ INSERTAR TABLA y imagen
    
 Hemos usado **Python**, y el resultado es el siguiente:
 
-<img src="imagenes/7.jpeg" width="640" align="center">
+<img src="imagenes/7.jpeg" width="600" align="center">
 
 
 Ejercicios de ampliación
