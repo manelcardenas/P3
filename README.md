@@ -117,12 +117,11 @@ Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usa
   
   * **Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos `pitch_db/train`..**
 
+Unvoiced frames as voiced | Voiced frames as unvoiced | Gross voiced error | MSE of fine errors |
+------------------------- | ------------------------- | ------------------ | ------------------ |
+    218/7045 (3.09 %)     |     356/4155 (8.57 %)     |   70/3799 (1.84 %) |       2.73 %       | 
 
-Unvoiced frames as voiced   |   Voiced frames as unvoiced   |   Gross voiced error   |   MSE of fine errors
-----------------------------|-------------------------------|------------------------|-----------------------
-     218/7045 (3.09 %)      |        356/4155 (8.57 %)      |     70/3799 (1.84 %)   |         2.73 %
-   
-Resultado TOTAL **91.54%**
+Resultado TOTAL |**91.54%**|
 
 
 <img src="imagenes/11.png" width="800" align="center">
