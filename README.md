@@ -136,9 +136,7 @@ Ejercicios de ampliación
 ------------------------
 
 
-Docopt
-------------------------
-------------------------
+## Docopt
 
 - **Usando la librería `docopt_cpp`, modifique el fichero `get_pitch.cpp` para incorporar los parámetros del detector a   los argumentos de la línea de comandos.**
   
@@ -169,22 +167,15 @@ AÑADIR EL SCRIPT.
 - **Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección de pitch.**
 
 
-Center Clipping (Preprocesado)
-------------------------
-------------------------
-
-Filtro de Mediana (Postprocesado)
-------------------------
-------------------------
+## Center Clipping (Preprocesado)
 
 
-Potencia (Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo)
-------------------------
-------------------------
+## Filtro de Mediana (Postprocesado)
 
-Bash (Intento fallido)
-------------------------
-------------------------
+
+## Potencia (Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo)
+
+## Bash (Intento fallido)
 
 
 
