@@ -41,13 +41,6 @@ void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) co
 
 	 **NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para hacerlo. Se            valorará la utilización de la librería matplotlib de Python.**
 	 
-   * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
-     unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la
-	 autocorrelación de la señal y la posición del primer máximo secundario.
-
-	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
-	 hacerlo. Se valorará la utilización de la librería matplotlib de Python.
-	 
 Hemos optado por hacer la gráfica en **Python**, concretamente con la librería **matplotlib**. La gráfica se corresponde a la señal y a la autocorrelación de un audio de *30ms*, y en ellas hemos remarcado el **periodo de pitch** y el primer máximo secundario. 
 
 <img src="imagenes/1.png" width="640" align="center">
@@ -103,40 +96,48 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 }
 ```
 
-- Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El 
-  resto del trabajo consiste, básicamente, en obtener las mejores prestaciones posibles con él.
+- **Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El resto del  	trabajo consiste, básicamente, en obtener las mejores prestaciones posibles con él.**
 
-  * Utilice el programa `wavesurfer` para analizar las condiciones apropiadas para determinar si un
-    segmento es sonoro o sordo. 
+  * **Utilice el programa `wavesurfer` para analizar las condiciones apropiadas para determinar si un segmento es sonoro o sordo.**
 	
-	  - Inserte una gráfica con la detección de pitch incorporada a `wavesurfer` y, junto a ella, los 
-	    principales candidatos para determinar la sonoridad de la voz: el nivel de potencia de la señal
-		(r[0]), la autocorrelación normalizada de uno (r1norm = r[1] / r[0]) y el valor de la
-		autocorrelación en su máximo secundario (rmaxnorm = r[lag] / r[0]).
+	  - **Inserte una gráfica con la detección de pitch incorporada a `wavesurfer` y, junto a ella, los principales candidatos para determinar la sonoridad de la voz: el nivel de potencia de la señal (r[0]), la autocorrelación normalizada de uno (r1norm = r[1] / r[0]) y el valor de la autocorrelación en su máximo secundario (rmaxnorm = r[lag] / r[0]).**
 
 		Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.
 
 	    Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que
 		en esta práctica es de 15 ms.
 
+<img src="imagenes/4.png" width="640" align="center">
+
       - Use el detector de pitch implementado en el programa `wavesurfer` en una señal de prueba y compare
 	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
 		ilustrativa del resultado de ambos detectores.
   
-  * Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error
-    y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
-	`pitch_db/train`..
 
-   * Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del
-     detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará
-	 el uso de alternativas de mayor calidad (particularmente Python).
+<img src="imagenes/5.png" width="640" align="center">
+
+Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usado otro audio):
+
+<img src="imagenes/6.png" width="640" align="center">
+
+  
+  
+  * **Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos `pitch_db/train`..**
+
+INSERTAR TABLA y imagen
+
+
+   * **Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará el uso de alternativas de mayor calidad (particularmente Python).
    
+Hemos usado **Python**, y el resultado es el siguiente:
+
+<img src="imagenes/7.jpeg" width="640" align="center">
+
 
 Ejercicios de ampliación
 ------------------------
 
-- Usando la librería `docopt_cpp`, modifique el fichero `get_pitch.cpp` para incorporar los parámetros del
-  detector a los argumentos de la línea de comandos.
+- **Usando la librería `docopt_cpp`, modifique el fichero `get_pitch.cpp` para incorporar los parámetros del detector a   los argumentos de la línea de comandos.**
   
   Esta técnica le resultará especialmente útil para optimizar los parámetros del detector. Recuerde que
   una parte importante de la evaluación recaerá en el resultado obtenido en la detección de pitch en la
