@@ -18,23 +18,23 @@ Ejercicios básicos
 
 ```c
 void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) const {
-//FILE *autocorrela = fopen("autocorrela.txt", "a");
+     //FILE *autocorr = fopen("autocorr.txt","a");
     for (unsigned int l = 0; l < r.size(); ++l) {
   		// \TODO Compute the autocorrelation r[l]
       r[l] = 0;
         for(unsigned int n = 0; n < x.size() - l; n++){
           r[l]= x[n] * x[n+l] + r[l];
-  //        fprintf(autocorrela, "%d \t %f \n", l, r[l]);
         }
         r[l]=(1.0F/x.size())*r[l];
-      //printf("%f\n\n",r[1]);
-      /// \DONE
+        //fprintf(autocorr,"%f\n",r[l]);
+       
+      /// \DONE 
     }
-  //fclose(autocorrela);
+     //fclose(autocorr); 
     if (r[0] == 0.0F) //to avoid log() and divide zero 
       r[0] = 1e-10; 
+}
 
-  }
 ```
 
    * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
@@ -44,15 +44,60 @@ void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) co
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la librería matplotlib de Python.
 	 
-Hemos optado por hacer la gráfica en **Python**, concretamente con la librería **matplotlib**. 
+Hemos optado por hacer la gráfica en **Python**, concretamente con la librería **matplotlib**. La gráfica se corresponde a la señal y a la autocorrelación de un audio de *30ms*, y en ellas hemos remarcado el **periodo de pitch** y el primer máximo secundario. 
 
 <img src="imagenes/1.png" width="640" align="center">
 
+Tambien la hicimos en matlab:
+
+<img src="imagenes/2.jpg" width="640" align="center">
+
+A continuación se muestra un audio de más duración:
+
+<img src="imagenes/3.jpg" width="640" align="center">
+
+NOTA: los códigos se encuentran en la carpeta _pym_. 
 
    * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
      autocorrelación. Inserte a continuación el código correspondiente.
+     
+```c
+while (*iR > 0 && iR < r.end()){
+      iR++;
+}
 
-   * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
+if(iR < r.begin() + npitch_min){ 
+      iR = r.begin() + npitch_min;
+}
+
+iRMax = iR;
+while(iR!=r.end()){
+      if(*iR>*iRMax){
+        iRMax=iR;
+}
+++iR;
+```
+
+   * **Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.**
+
+```c
+bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa) const {
+
+    bool unvoiced = true;
+    float potnorm=pot/potmaxima;
+    //cout << potnorm << '\t' << pot << '\t' << potmaxima << endl;
+    if(r1norm > umb1 || rmaxnorm > umb2 /*|| tasa < umb3*/){        //0.95 0.48   91,26%
+      unvoiced = false;
+    }
+    if(tasa > umb3){   // 4200 91,26%
+      unvoiced = true;
+    }
+    if(potnorm<2.5 && tasa<2450){      //2.5  2500   91,53
+      unvoiced = false;
+    }
+    return unvoiced;
+}
+```
 
 - Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El 
   resto del trabajo consiste, básicamente, en obtener las mejores prestaciones posibles con él.
