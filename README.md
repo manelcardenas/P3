@@ -119,9 +119,9 @@ Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usa
 
 
 Unvoiced frames as voiced   |   Voiced frames as unvoiced   |   Gross voiced error   |   MSE of fine errors
-----------------------------| :---------------------------: |------------------------| :--------------------:
+----------------------------|-------------------------------|------------------------|-----------------------
      218/7045 (3.09 %)      |        356/4155 (8.57 %)      |     70/3799 (1.84 %)   |         2.73 %
-     
+   
 Resultado TOTAL **91.54%**
 
 
