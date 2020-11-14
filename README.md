@@ -147,7 +147,7 @@ Ejemplo de uso:
 
  * Ejemplo 2: Definiendo umbrales
  
-<img src="imagenes/10.png" width="640" align="center">
+<img src="imagenes/10.png" width="700" align="center">
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección
   de pitch.
