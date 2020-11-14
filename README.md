@@ -15,12 +15,59 @@ Ejercicios básicos
 
    * Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.
 
+
+```c
+void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) const {
+//FILE *autocorrela = fopen("autocorrela.txt", "a");
+    for (unsigned int l = 0; l < r.size(); ++l) {
+  		// \TODO Compute the autocorrelation r[l]
+      r[l] = 0;
+        for(unsigned int n = 0; n < x.size() - l; n++){
+          r[l]= x[n] * x[n+l] + r[l];
+  //        fprintf(autocorrela, "%d \t %f \n", l, r[l]);
+        }
+        r[l]=(1.0F/x.size())*r[l];
+      //printf("%f\n\n",r[1]);
+      /// \DONE
+    }
+  //fclose(autocorrela);
+    if (r[0] == 0.0F) //to avoid log() and divide zero 
+      r[0] = 1e-10; 
+
+  }
+```
+
    * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
      unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la
 	 autocorrelación de la señal y la posición del primer máximo secundario.
 
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la librería matplotlib de Python.
+	 
+>Hemos hecho el código en Python:
+
+
+```Python
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.io.wavfile as waves
+
+archivo = 'matplotlib.wav'
+muestreo, sonido = waves.read(archivo)
+def autocorr(x):
+    result = np.correlate(x, x, mode = "full")
+    return result
+    # o return result[result.size/2:]
+final = autocorr(sonido.astype(float))
+fig, axs = plt.subplots(2)
+fig.suptitle('Senyal y autocorrelacion')
+axs[0].plot(sonido)
+axs[1].plot(final)
+plt.show()
+```
+
+
+
 
    * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
      autocorrelación. Inserte a continuación el código correspondiente.
