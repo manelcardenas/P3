@@ -116,9 +116,9 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 }
 ```
 Donde usamos:
- 	* Correlación
-	* Tasa de cruces por cero
-	* Potencia **normalizada**
+   * Correlaciones
+   * Tasa de cruces por cero
+   * Potencia **normalizada**
 
 Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es muy elevada el sonido muy posiblemente será sordo, ya que un sonido sordo, al tener menos amplitud y ser mas semejante al ruido, pasa mas veces por la recta y = 0 que un sonido sonoro. En el caso de Correlación y tasa de cruces por cero, usamos **POSIX** para encontrar el valor óptimo. Esto, junto con la potencia normalizada, lo explicaremos en más detalle en el apartado de Ampliaciones. 
 
