@@ -44,7 +44,7 @@ Primero usamos *Matlab* para hacer la gráfica. Esta, se corresponde a la señal
 
 <img src="imagenes/2.jpg" width="800" align="center">
 
-Tambien hemos hecho la gráfica en **Python**, concretamente con la librería **matplotlib**, debido a las recomendaciones de nuestro profesor. 
+Tambien hemos hecho la gráfica en **Python**, concretamente con la librería `matplotlib`, debido a las recomendaciones de nuestro profesor. 
 
 <img src="imagenes/1.png" width="800" align="center">
 
@@ -120,8 +120,7 @@ Donde usamos:
    * Tasa de cruces por cero
    * Potencia **normalizada**
 
-Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es muy elevada el sonido muy posiblemente será sordo, ya que un sonido sordo, al tener menos amplitud y ser mas semejante al ruido, pasa mas veces por la recta y = 0 que un sonido sonoro. En el caso de Correlación y tasa de cruces por cero, usamos **POSIX** para encontrar el valor óptimo. Esto, junto con la potencia normalizada, lo explicaremos en más detalle en el apartado de Ampliaciones. 
-
+Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es muy elevada el sonido muy posiblemente será sordo, ya que un sonido sordo, al tener menos amplitud y ser mas semejante al ruido, pasa mas veces por la recta y = 0 que un sonido sonoro. En el caso de correlación y tasa de cruces por cero, usamos `POSIX` para encontrar el valor óptimo. Esto, junto con la potencia normalizada, lo explicaremos en más detalle en el apartado de Ampliaciones. 
 
 
 - **Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El resto del  	trabajo consiste, básicamente, en obtener las mejores prestaciones posibles con él.**
@@ -133,7 +132,7 @@ Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es m
 **Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
 **Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
 
-<img src="imagenes/4.png" width="800" align="center">
+Falta una gráfica que salga todo (le he pedido a manel) y explicaré las relaciones entre todos. 
 
 - **Use el detector de pitch implementado en el programa wavesurfer en una señal de prueba y compare su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica ilustrativa del resultado de ambos detectores.**
 
@@ -142,8 +141,9 @@ Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es m
 Otra forma de ver el resultado de nuestro código sería el siguiente (hemos usado otro audio):
 
 <img src="imagenes/6.png" width="800" align="center">
-  
-  
+
+En general podríamos concluir en que nuestro programa nos da un resultado bastante similar al de `Wavesurfer`, aunque en algunos puntos no acertamos del todo, están cerca del correcto. 
+
   * **Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos `pitch_db/train`..**
 
 Unvoiced frames as voiced | Voiced frames as unvoiced | Gross voiced error | MSE of fine errors |
@@ -156,14 +156,14 @@ Resultado TOTAL **91.54%**
 
    * **Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará el uso de alternativas de mayor calidad (particularmente Python).**
    
-Hemos usado **Python**, y el resultado es el siguiente:
+Como antes, hemos usado **Python**, con la libreria `Matplotlib`, y el resultado es el siguiente:
 
 <img src="imagenes/7.jpeg" width="600" align="center">
 
+La gráfica roja se corresponde al pitch que detecta nuestro programa, y la azul al pitch de referencia. Como se puede observar, son prácticamente iguales, hay tramos en los que se superponen completamente (es decir, la detección ha sido perfecta), y otros en los que difieren un poco, aunque tampoco demasiado. 
 
 Ejercicios de ampliación
 ------------------------
-
 
 ## Docopt
 
@@ -173,39 +173,94 @@ Ejercicios de ampliación
 
   * **Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización con los argumentos añadidos.**
 
-Mensaje de ayuda del **docopt**:
+###### Mensaje de ayuda del **docopt**:
 
-<img src="imagenes/8.png" width="640" align="center">
+```bash
 
-Ejemplo de uso:
+get_pitch - Pitch Detector 
+
+Usage:
+    get_pitch [options] <input-wav> <output-txt> 
+    get_pitch (-h | --help)
+    get_pitch --version
+
+Options:
+    -h, --help  Show this screen
+    --version   Show the version of the project
+    --umbral1 float   [default: 0.95] r[1]/r[0]
+    --umbral2 float   [default: 0.48] r[lag]/r[0]
+    --umbral3 float   [default: 4200] tasa de cruces por cero
+
+Arguments:
+    input-wav   Wave file with the audio signal
+    output-txt  Output file: ASCII file with the result of the detection:
+                    - One line per frame with the estimated f0
+                    - If considered unvoiced, f0 must be set to f0 = 0
+
+```
+
+###### Ejemplo de uso:
 
  * *Ejemplo 1*: Sin definir umbrales (los por defecto)
  
 <img src="imagenes/9.png" width="500" align="center">
 
 
- * *Ejemplo 2*: Definiendo umbrales
+ * *Ejemplo 2*: Definiendo umbrales.
  
 <img src="imagenes/10.png" width="750" align="center">
 
-Gracias al docopt, tenemos un fácil y rápido acceso a modificar los valores de los umbrales. Aún así, quisimos provar de hacer un script en **bash**.
-
-AÑADIR EL SCRIPT. 
+Gracias al docopt, tenemos un fácil y rápido acceso a modificar los valores de los umbrales con tal de ir optimizando el funcionamiento.
 
 
 - **Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección de pitch.**
-
+  **Incluya, a continuación, una explicación de las técnicas incorporadas al detector. Se valorará la inclusión de gráficas, tablas, código o cualquier otra cosa que ayude a comprender el trabajo realizado.**
 
 ## Center Clipping (Preprocesado)
 
+```c
+    float max=0.0F;
+    for(unsigned int k = 0; k< x.size(); k++){
+      if(x[k]> max) max = x[k];
+    }
+    float llindar=0.01*max;
+    for(unsigned int k = 0; k < x.size(); k++){
+      if (fabs(x[k]) < llindar) x[k]=0;
+      else if (x[k]> llindar) x[k]-=llindar;
+      else if (x[k] < -llindar) x[k]+=llindar;
+    }
+```
+Para el preprocesado de la señal hemos incluido el *center clipping* en el código. Mantiene la periodicidad, reduciendo el ruido y evitando que los formantes puedan influir en la detección del pitch.
 
 ## Filtro de Mediana (Postprocesado)
 
+Para el postprocesado hemos usado un filtro de mediana, el código se muestra a continuación. 
+
+```c
+ filter = f0;
+
+   min1=fmin(f0[0],f0[1]);
+   max1= fmax(f0[0],f0[1]);
+   filter[0]= f0[0]+f0[1]-min1-max1;
+
+  for( unsigned int i=1; i < f0.size()-1 ; i++){
+
+    min1=fmin(f0[i-1],f0[i]);
+    min2=fmin(min1,f0[i+1]);
+    max1= fmax(f0[i-1],f0[i]);
+    max2 = fmax(max1,f0[i+1]);
+    filter[i]= f0[i-1]+f0[i]+f0[i+1]-min2-max2; 
+  }
+
+  f0=filter;
+```
+
 
 ## Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo
+
 ### Potencia Normalizada
 
-En get_pitch.cpp en preprocesado, retorna la potencia maxima de esta forma:
+En `get_pitch.cpp` en preprocesado, se devuelve la potencia máxima tal y como vemos en el siguiente código. 
 
 ```c
 vector<float>::iterator iX;
@@ -227,9 +282,9 @@ vector<float>::iterator iX;
  }
 ```
 
-Es la misma forma que calculavamos la potencia en la practica 1, solo que ahora buscamos el máximo de esta. 
+Es la misma forma que calculabamos la potencia en la práctica 1, solo que ahora buscamos el máximo de esta. 
 
-Hacemos la llamada a pitch_analizer.cpp entonces, y añadimos las variables en pitch_analizer.h. 
+Hacemos la llamada a `pitch_analizer.cpp` entonces, y añadimos las variables en `pitch_analizer.h.` 
 
 En pitch_analizer.cpp calculamos la potencia:
 
@@ -237,7 +292,7 @@ En pitch_analizer.cpp calculamos la potencia:
     float pot = 10 * log10(r[0]);
 ```
 
-finalmente, en el método unvoiced(), 
+finalmente, en el método `unvoiced`, 
 
 ```c
     float potnorm=pot/potmaxima;
@@ -258,14 +313,6 @@ return unvoiced;
 ## Bash (Intento fallido)
 
 
-
-  Incluya, a continuación, una explicación de las técnicas incorporadas al detector. Se valorará la
-  inclusión de gráficas, tablas, código o cualquier otra cosa que ayude a comprender el trabajo realizado.
-
-  También se valorará la realización de un estudio de los parámetros involucrados. Por ejemplo, si se opta
-  por implementar el filtro de mediana, se valorará el análisis de los resultados obtenidos en función de
-  la longitud del filtro.
-   
 
 Evaluación *ciega* del detector
 -------------------------------
