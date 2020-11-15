@@ -40,11 +40,11 @@ void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) co
 
 	 **NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para hacerlo. Se            valorará la utilización de la librería matplotlib de Python.**
 
-Primero usamos *Matlab* para hacer la gráfica. Esta, se corresponde a la señal y a la autocorrelación de un audio de *30ms*, y en ellas hemos remarcado el **periodo de pitch** y el **primer máximo secundario.** 
+Primero usamos `Matlab` para hacer la gráfica. Esta, se corresponde a la señal y a la autocorrelación de un audio de *30ms*, y en ellas hemos remarcado el **periodo de pitch** y el **primer máximo secundario.** 
 
 <img src="imagenes/2.jpg" width="800" align="center">
 
-Tambien hemos hecho la gráfica en **Python**, concretamente con la librería `matplotlib`, debido a las recomendaciones de nuestro profesor. 
+Tambien hemos hecho la gráfica en **`Python`**, concretamente con la librería `matplotlib`, debido a las recomendaciones de nuestro profesor. 
 
 <img src="imagenes/1.png" width="800" align="center">
 
