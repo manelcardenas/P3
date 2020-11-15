@@ -232,10 +232,9 @@ Gracias al docopt, tenemos un fácil y rápido acceso a modificar los valores de
 ```
 Para el preprocesado de la señal hemos incluido el *center clipping* en el código. Mantiene la periodicidad, reduciendo el ruido y evitando que los formantes puedan influir en la detección del pitch.
 
-Con `Matlab`, hemos hecho un script (se encuentra en la carpeta `pym`) el cual hace un central clipping. 
+Con `Matlab`, hemos hecho un script (se encuentra en la carpeta `pym`) el cual hace un central clipping a 0.05:
 
-
-INSERTAR IMAGEN
+<img src="clipping.jpeg/10.png" width="750" align="center">
 
 
 ### Filtro de Mediana (Postprocesado)
