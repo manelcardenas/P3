@@ -165,7 +165,7 @@ La gráfica roja se corresponde al pitch que detecta nuestro programa, y la azul
 Ejercicios de ampliación
 ------------------------
 
-## Docopt
+### Docopt
 
 - **Usando la librería `docopt_cpp`, modifique el fichero `get_pitch.cpp` para incorporar los parámetros del detector a   los argumentos de la línea de comandos.**
   
@@ -173,7 +173,7 @@ Ejercicios de ampliación
 
   * **Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización con los argumentos añadidos.**
 
-###### Mensaje de ayuda del **docopt**:
+##### Mensaje de ayuda del **docopt**:
 
 ```bash
 
@@ -199,7 +199,7 @@ Arguments:
 
 ```
 
-###### Ejemplo de uso:
+#### Ejemplo de uso:
 
  * *Ejemplo 1*: Sin definir umbrales (los por defecto)
  
@@ -216,7 +216,7 @@ Gracias al docopt, tenemos un fácil y rápido acceso a modificar los valores de
 - **Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección de pitch.**
   **Incluya, a continuación, una explicación de las técnicas incorporadas al detector. Se valorará la inclusión de gráficas, tablas, código o cualquier otra cosa que ayude a comprender el trabajo realizado.**
 
-## Center Clipping (Preprocesado)
+### Center Clipping (Preprocesado)
 
 ```c
     float max=0.0F;
@@ -232,7 +232,7 @@ Gracias al docopt, tenemos un fácil y rápido acceso a modificar los valores de
 ```
 Para el preprocesado de la señal hemos incluido el *center clipping* en el código. Mantiene la periodicidad, reduciendo el ruido y evitando que los formantes puedan influir en la detección del pitch.
 
-## Filtro de Mediana (Postprocesado)
+### Filtro de Mediana (Postprocesado)
 
 Para el postprocesado hemos usado un filtro de mediana, el código se muestra a continuación. 
 
@@ -256,9 +256,9 @@ Para el postprocesado hemos usado un filtro de mediana, el código se muestra a 
 ```
 
 
-## Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo
+### Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo
 
-### Potencia Normalizada
+#### Potencia Normalizada
 
 En `get_pitch.cpp` en preprocesado, se devuelve la potencia máxima tal y como vemos en el siguiente código. 
 
@@ -310,8 +310,40 @@ return unvoiced;
 
 
 
-## Bash (Intento fallido)
+### Bash 
 
+Gracias al `docopt` hemos podido provar con más facilidad y rapidez los valores de los umbrales de correlación con tal de optimizar el funcionamiento de nuestro programa . Aún así, hemos intentado automatizar dicho proceso usando **`Bash`**. No nos funcionó y no hemos podido seguir intentándolo por falta de tiempo, pero dejamos aquí los códigos que hicimos. Nuestro objetivo era recorrer el valor de los umbrales de correlación de 0.00 a 1.00 en saltos de 0.05 en 0.05, por ejemplo. Guardar los valores en un fichero `.txt` y luego encontrar el máximo introduciendo en el terminal el siguiente comando `sort -t: -k2n results.txt | tail -1`. 
+
+El primer intento de código actuaba únicamente en un audio, aunque sabemos que no es lo mejor... 
+
+```bash
+#! /usr/bin bash
+
+for umbr1 in `seq 0.00 0.05 1.00`
+do
+    for umbr2 in `seq 0.00 0.05 1.00`
+    do
+        logrado=`get_pitch --umbr1 $umbr1 --umbr2 $umbr2 sb042.wav sb042.f0`
+        echo -ne "$umbr1 | $umbr2 | $logrado" > results.txt
+    done
+done
+```
+
+El ideal sería el siguiente, que actuara sobre todos los audios y el valor exportado en el `.txt` fuera el de después de la palabra TOTAL (el %) con la línea `fgrep TOTAL > results.txt`
+
+```bash
+#! /usr/bin bash
+
+for umbr1 in `seq 0.00 0.05 1.00`
+do
+    for umbr2 in `seq 0.00 0.05 1.00`
+    do
+        logrado=`get_pitch --umbr1 $umbr1 --umbr2 $umbr2 sb042.wav sb042.f0`
+	`pitch_evaluate pitch_db/train/*f0ref`
+    done
+done | fgrep TOTAL > results.txt
+
+```
 
 
 Evaluación *ciega* del detector
