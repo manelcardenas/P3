@@ -93,7 +93,7 @@ Al principio, nuestro código para la decisión de sonoro o sordo se basaba úni
   }
 ```
 
-Donde los umbrales los optimizando a base de ir provando posibles valores. Como se puede observar, es una forma de decidir bastante senzilla y simple:  si estos valores estaban a un lado del umbral determinado, se decidía que el sonido era sordo, y si estaban al otro lado, se decidía que era sonoro. 
+Donde los umbrales los hemos ido optimizando a base de ir provando posibles valores. Como se puede observar, es una forma de decidir bastante senzilla y simple:  si estos valores estaban a un lado del umbral determinado, se decidía que el sonido era sordo, y si estaban al otro lado, se decidía que era sonoro. 
 
 Más adelante, estuvimos pensando más posibles umbrales de decisión, y llegamos al siguiente código:
 
