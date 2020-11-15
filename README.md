@@ -234,7 +234,7 @@ Para el preprocesado de la señal hemos incluido el *center clipping* en el cód
 
 Con `Matlab`, hemos hecho un script (se encuentra en la carpeta `pym`) el cual hace un central clipping a 0.05:
 
-<img src="clipping.jpeg/10.png" width="750" align="center">
+<img src="imagenes/clipping.jpeg" width="750" align="center">
 
 
 ### Filtro de Mediana (Postprocesado)
