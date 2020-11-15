@@ -132,7 +132,7 @@ Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es m
 	**Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
 	**Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
 
-<img src="imagenes/graficas.png" width="800" align="center">
+<img src="imagenes/graficas.jpeg" width="800" align="center">
 
 Por un lado podemos ver claramente como la potencia no es un parámetro que nos aporte mucha información útil para nuestro programa: hay partes en las cuales existe una alta potencia pero wavesurfer no lo detecta como pitch. Por otro lado, todas las gráficas de autocorrelaciones tienen una forma muy parecida a la del pitch, así que eso nos hace concluir en que serían muy útiles para detectar el pitch. Finalmente, respecto al zcr sabemos que es bajo con los sonidos sonoros y elevado con los sordos, y que el pitch solo existe en los sonoros. En las gráficas vemos que hay una obvia relación entre la tasa de cruces por cero y el pitch: cuando la tasa es elevada, no se detecta pitch (sordo).
 
