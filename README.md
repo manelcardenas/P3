@@ -129,10 +129,10 @@ Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es m
 	
 	  - **Inserte una gráfica con la detección de pitch incorporada a `wavesurfer` y, junto a ella, los principales candidatos para determinar la sonoridad de la voz: el nivel de potencia de la señal (r[0]), la autocorrelación normalizada de uno (r1norm = r[1] / r[0]) y el valor de la autocorrelación en su máximo secundario (rmaxnorm = r[lag] / r[0]).**
 
-**Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
-**Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
+	**Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.**
+	**Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
 
-Falta una gráfica que salga todo (le he pedido a manel) y explicaré las relaciones entre todos. 
+Falta una gráfica que salga todo y explicar las relaciones entre todos. 
 
 - **Use el detector de pitch implementado en el programa wavesurfer en una señal de prueba y compare su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica ilustrativa del resultado de ambos detectores.**
 
