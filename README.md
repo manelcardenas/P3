@@ -39,23 +39,25 @@ void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) co
    * **Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de unos 30 ms de 	un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la autocorrelación de la señal y 	  la posición del primer máximo secundario.**
 
 	 **NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para hacerlo. Se            valorará la utilización de la librería matplotlib de Python.**
-	 
-Hemos optado por hacer la gráfica en **Python**, concretamente con la librería **matplotlib**. La gráfica se corresponde a la señal y a la autocorrelación de un audio de *30ms*, y en ellas hemos remarcado el **periodo de pitch** y el primer máximo secundario. 
+
+Primero usamos *Matlab* para hacer la gráfica. Esta, se corresponde a la señal y a la autocorrelación de un audio de *30ms*, y en ellas hemos remarcado el **periodo de pitch** y el **primer máximo secundario.** 
+
+<img src="imagenes/2.jpg" width="800" align="center">
+
+Tambien hemos hecho la gráfica en **Python**, concretamente con la librería **matplotlib**, debido a las recomendaciones de nuestro profesor. 
 
 <img src="imagenes/1.png" width="800" align="center">
 
-Tambien la hicimos en matlab:
-
-<img src="imagenes/2.jpg" width="800" align="center">
+*Nota:* Siendo una autocorrelación el máximo debería estar en x = 0, pero por algun motivo que no hemos podido solucionar, está en 600... 
 
 A continuación se muestra un audio de más duración:
 
 <img src="imagenes/3.jpg" width="800" align="center">
 
-NOTA: los códigos se encuentran en la carpeta _pym_. 
+*Nota:* Este y los códigos siguientes de matlab y python se encuentran en la carpeta _pym_. 
 
    * **Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la autocorrelación. Inserte a continuación el código correspondiente.**
-     
+
 ```c
 while (*iR > 0 && iR < r.end()){
       iR++;
@@ -75,13 +77,33 @@ while(iR!=r.end()){
 
    * **Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.**
 
+Al principio, nuestro código para la decisión de sonoro o sordo se basaba únicamente en valores de correlaciones, como se ve a continuación:
+
+
+```c
+ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm) const {
+    /// \TODO Implement a rule to decide whether the sound is voiced or not.
+    /// * You wan use the standard features (pot, r1norm, rmaxnorm),
+    ///   or compute and use other ones.
+    bool unvoiced = true;
+    if(r1norm > 0.95 || rmaxnorm > 0.48){
+      unvoiced = false;
+    }
+    return unvoiced;
+  }
+```
+
+Donde los umbrales los optimizando a base de ir provando posibles valores. Como se puede observar, es una forma de decidir bastante senzilla y simple:  si estos valores estaban a un lado del umbral determinado, se decidía que el sonido era sordo, y si estaban al otro lado, se decidía que era sonoro. 
+
+Más adelante, estuvimos pensando más posibles umbrales de decisión, y llegamos al siguiente código:
+
 ```c
 bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa) const {
 
     bool unvoiced = true;
     float potnorm=pot/potmaxima;
     //cout << potnorm << '\t' << pot << '\t' << potmaxima << endl;
-    if(r1norm > umb1 || rmaxnorm > umb2 /*|| tasa < umb3*/){        //0.95 0.48   91,26%
+    if(r1norm > umb1 || rmaxnorm > umb2 /*|| tasa < umb3*/){        
       unvoiced = false;
     }
     if(tasa > umb3){   // 4200 91,26%
@@ -93,6 +115,14 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
     return unvoiced;
 }
 ```
+Donde usamos:
+ 	* Correlación
+	* Tasa de cruces por cero
+	* Potencia **normalizada**
+
+Mucho mas completo. La tasa de cruces por cero sabemos, por teoría, que si es muy elevada el sonido muy posiblemente será sordo, ya que un sonido sordo, al tener menos amplitud y ser mas semejante al ruido, pasa mas veces por la recta y = 0 que un sonido sonoro. En el caso de Correlación y tasa de cruces por cero, usamos **POSIX** para encontrar el valor óptimo. Esto, junto con la potencia normalizada, lo explicaremos en más detalle en el apartado de Ampliaciones. 
+
+
 
 - **Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El resto del  	trabajo consiste, básicamente, en obtener las mejores prestaciones posibles con él.**
 
@@ -104,7 +134,6 @@ bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm,float tasa)
 **Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que en esta práctica es de 15 ms.**
 
 <img src="imagenes/4.png" width="800" align="center">
-
 
 - **Use el detector de pitch implementado en el programa wavesurfer en una señal de prueba y compare su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica ilustrativa del resultado de ambos detectores.**
 
@@ -173,7 +202,58 @@ AÑADIR EL SCRIPT.
 ## Filtro de Mediana (Postprocesado)
 
 
-## Potencia (Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo)
+## Optimización demostrable de los parámetros que gobiernan la decisión sonoro/sordo
+### Potencia Normalizada
+
+En get_pitch.cpp en preprocesado, retorna la potencia maxima de esta forma:
+
+```c
+vector<float>::iterator iX;
+  vector<float> f0;
+  float pot_max = -1000.0F;
+  for (iX = x.begin(); iX + n_len < x.end(); iX = iX + n_shift) {
+        float aux=0.0F;
+        for (int y = 0; y < n_len; y++){
+            aux += iX[y]*iX[y];
+            if(aux==0.0F){
+              aux = 1e-10; 
+            }
+        }
+        float PdB=10*log10(aux/n_len); 
+        if(PdB>pot_max){
+          pot_max=PdB;
+        }
+         //cout << PdB << '\t' << pot_max << endl;
+ }
+```
+
+Es la misma forma que calculavamos la potencia en la practica 1, solo que ahora buscamos el máximo de esta. 
+
+Hacemos la llamada a pitch_analizer.cpp entonces, y añadimos las variables en pitch_analizer.h. 
+
+En pitch_analizer.cpp calculamos la potencia:
+
+```c
+    float pot = 10 * log10(r[0]);
+```
+
+finalmente, en el método unvoiced(), 
+
+```c
+    float potnorm=pot/potmaxima;
+```
+De esta forma, tenemos la **potencia normalizada** como umbral. 
+
+Si la potencia normalizada es pequeña y la tasa es pequeña, entonces será sonoro.  
+
+```c
+if(potnorm<2.5 && tasa<2450){      
+      unvoiced = false;
+    }
+return unvoiced;
+```
+
+
 
 ## Bash (Intento fallido)
 
