@@ -20,12 +20,14 @@ namespace upc {
     enum Window {
 		RECT, 						///< Rectangular window
 		HAMMING						///< Hamming window
+    
 	};
 
     void set_window(Window type); ///< pre-compute window
 
   private:
     std::vector<float> window; ///< precomputed window
+    float umb1, umb2, umb3,potmaxima;
     unsigned int frameLen, ///< length of frame (in samples). Has to be set in the constructor call
       samplingFreq, ///< sampling rate (in samples per second). Has to be set in the constructor call
       npitch_min, ///< minimum value of pitch period, in samples
@@ -40,21 +42,32 @@ namespace upc {
 	/// Returns the pitch (in Hz) of input frame x
 	///
     float compute_pitch(std::vector<float> & x) const;
-	
+
 	///
 	/// Returns true is the frame is unvoiced
 	///
-    bool unvoiced(float pot, float r1norm, float rmaxnorm) const;
+    bool unvoiced(float pot, float r1norm, float rmaxnorm, float tasa) const;
 
-
+  //extra
+    float compute_zcr(std::vector<float> & x, unsigned int N, unsigned int fm) const;
+    //float compute_power(std::vector<float> & x, unsigned int N) const;
+  //--------------------------------------------------------------------
   public:
-    PitchAnalyzer(	unsigned int fLen,			///< Frame length in samples
+    PitchAnalyzer(	float umbral1,
+          float umbral2,
+          float umbral3,
+          float pot_max,
+          unsigned int fLen,			///< Frame length in samples
 					unsigned int sFreq,			///< Sampling rate in Hertzs
 					Window w=PitchAnalyzer::HAMMING,	///< Window type
 					float min_F0 = MIN_F0,		///< Pitch range should be restricted to be above this value
 					float max_F0 = MAX_F0		///< Pitch range should be restricted to be below this value
 				 )
 	{
+      umb1=umbral1;
+      umb2=umbral2;
+      umb3=umbral3;
+      potmaxima=pot_max;
       frameLen = fLen;
       samplingFreq = sFreq;
       set_f0_range(min_F0, max_F0);
